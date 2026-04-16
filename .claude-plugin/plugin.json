@@ -1,6 +1,6 @@
 {
   "name": "pmcoder",
-  "description": "Claude Code skills collection. Currently ships the reanimator skill for recovering lost sessions after a crash.",
+  "description": "Claude Code skills collection: reanimator (recover lost sessions), shape-review (design quality gate), ios-test (iOS Simulator bootstrap), neckbeard (senior-engineer prompt rewriter + reviewer).",
   "version": "0.1.0",
   "author": {
     "name": "sefr-sefr"

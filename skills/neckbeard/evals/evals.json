@@ -1,0 +1,29 @@
+{
+  "skill_name": "neckbeard",
+  "evals": [
+    {
+      "id": 1,
+      "name": "rewrite-vague-dashboard-prompt",
+      "mode": "rewrite",
+      "prompt": "hey so I want a thing where we can see how users use the feature, so we can understand adoption. can you figure out what would be the best way to build this? I want to use it for my weekly review. Run the neckbeard on this before I send it to Claude.",
+      "expected_behavior": "Should ask 2-3 sharp technical questions first (data source, recurring vs one-time, scope). After answers, rewrites into a directive prompt: names the dashboard stack, closes loopholes (no mock data, no filter UI, no second dashboarding stack), pre-empts wrong paths, concrete success condition. Output in a fenced code block, copy-paste ready. No 'Prompt to paste for Claude' ceremony in rewrite mode.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "review-plan-with-vaporware-smells",
+      "mode": "review",
+      "prompt": "Have a neckbeard look at this plan before I give Claude the go-ahead:\n\nPlan: Background job for nightly BigQuery export\n\nPhase 1: Core pipeline\n- Cloud Run service triggered by Cloud Scheduler\n- Reads from events.raw, writes to events.export\n- Idempotency key: job_id\n- Config table `export_config` with columns: id, name, schedule, metadata (JSONB for future flexibility)\n- Retry logic: use exponential backoff\n\nPhase 2: Observability\n- Add structured logging\n- Add metrics dashboard\n- Monitor job failures\n\nPhase 3: Multi-tenancy and regional failover\n- Split pipeline by tenant ID\n- Regional failover with active-active deployment\n- Cross-region replication\n\nShould I tell Claude to build this as-is?",
+      "expected_behavior": "Should output PROS first, then CONS. PROS should name specific good decisions (Cloud Run + Scheduler, idempotency). CONS should lead with root-cause framing and include per-con fixes. Should flag: Phase 3 vaporware (cut it), retry logic abstract (name Cloud Tasks retry config), metadata JSONB column (god-column graveyard), Phase 2 observability deferred (move to Phase 1). Since this is same-session, should NOT end with 'Prompt to paste for Claude' — instead say 'going to apply these changes now' or similar. If it does emit a paste-prompt, flag as failure.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "back-off-brainstorming",
+      "mode": "none",
+      "prompt": "I'm trying to figure out whether we should position Yesper more as an AI infrastructure layer vs. an application-first product. Can you brainstorm with me? What are the pros and cons of each?",
+      "expected_behavior": "The skill SHOULD NOT trigger, or if it triggers, it should immediately recognize this as brainstorming / early exploration and back off per the 'When NOT to use' section. Neckbeard demanding primitives here would kill divergent thinking. If the skill engages, it should say something like 'this is brainstorming, not a prompt or plan to review — I'll sit this one out.' If it asks 2-3 sharp technical questions or tries to rewrite the prompt into directive form, flag as failure.",
+      "files": []
+    }
+  ]
+}

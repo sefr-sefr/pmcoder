@@ -24,6 +24,12 @@ Boots an iOS Simulator, connects `idb`, navigates Safari to a URL, and takes a f
 
 **Triggers on:** `/ios-test <url>`. Requires Xcode command line tools, `idb` (`pip3 install fb-idb`), and `idb-companion` (`brew tap facebook/fb && brew install idb-companion`).
 
+### neckbeard
+
+An opinionated senior-engineer voice that rewrites my prompts *before* they go to Claude, and reviews Claude's plans/designs/implementations *after*. Closes the gap between how a product person tends to write prompts (soft, "figure it out together", implementation open) and how a seasoned engineer writes them (directive, names primitives, closes loopholes, rejects the obvious wrong paths upfront). In rewrite mode it asks 2–3 sharp technical questions first, then rewrites into something copy-paste ready. In review mode it outputs PROS then CONS (order matters — PROS first stops the model from sycophancy-gravitating to "everything is great").
+
+**Triggers on:** "neckbeard this", "rewrite this", "slap this around", "pros and cons on this", "is this well-engineered", and similar — plus proactively when a prompt or plan smells underspecified.
+
 ## Install
 
 ```
