@@ -1,0 +1,9 @@
+{
+  "name": "pmcoder",
+  "description": "Claude Code skills collection. Currently ships the reanimator skill for recovering lost sessions after a crash.",
+  "version": "0.1.0",
+  "author": {
+    "name": "sefr-sefr"
+  },
+  "homepage": "https://github.com/sefr-sefr/pmcoder"
+}
