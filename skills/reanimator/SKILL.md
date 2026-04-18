@@ -16,7 +16,7 @@ Fire on any of: "my computer crashed", "I just rebooted", "which sessions were r
 A list of 8–12 lines like this:
 
 ```
-cd /Users/peterblom/_CODE_/Yesper/mcps && claude -r '2e23b2ab-3648-49e0-b633-b42d246efc54'  # <-- mcp-trafikverket: staging 4 files for commit (ended mid-response)
+cd /path/to/your/repo && claude -r '2e23b2ab-3648-49e0-b633-b42d246efc54'  # <-- api-service: staging 4 files for commit (ended mid-response)
 ```
 
 The `#` makes the description a shell comment — the user can double-click the whole row to select it and paste without the description breaking the command. Use **two spaces** before the `#` for readability. Do not quote the description (no surrounding single or double quotes) since the terminal will happily ignore anything after `#`, and unquoted text keeps the line cleaner.
@@ -61,7 +61,7 @@ Then format the output for the user:
 
 2. `<label>` is:
    - The `custom_name` if set, shown verbatim (don't prettify, don't quote).
-   - Otherwise a terse human-readable description synthesized from `first_prompt` + `last_activity`. Aim for `<topic>: <what was happening>` in under 70 chars. Examples: `bessy frontend: finished plan, committed through review gates`, `larsa: d3-phase2 intent-protocol plan just saved`. Use your judgment — the slug is not useful here; pick something the user will recognize.
+   - Otherwise a terse human-readable description synthesized from `first_prompt` + `last_activity`. Aim for `<topic>: <what was happening>` in under 70 chars. Examples: `payments-api: finished plan, committed through review gates`, `auth-service: phase2 intent-protocol plan just saved`. Use your judgment — the slug is not useful here; pick something the user will recognize.
 3. After the lines, write a short paragraph covering:
    - What cluster/pattern of work the candidates represent (look for shared project roots, naming themes).
    - Which single session is the strongest died-mid-turn signal (ending = `assistant` or `user`, with recent `last_ts`).

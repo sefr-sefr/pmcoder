@@ -1,6 +1,6 @@
 ---
 name: shape-review
-description: Shape Review quality gate for designs and plans. Invoke BEFORE presenting any design section, spec, or implementation plan to the user. Catches over-engineering, duct-taping, wrong shape, and CLAUDE.md violations. Required during brainstorming, before specs, and during planning.
+description: Use before presenting any design, spec, or implementation plan to the user. Catches over-engineering, duct-taping around existing problems, wrong shape, and CLAUDE.md rule violations. Required during brainstorming, before specs, and during planning passes.
 ---
 
 # Shape Review
@@ -8,6 +8,10 @@ description: Shape Review quality gate for designs and plans. Invoke BEFORE pres
 You have formed a design or plan internally. **Do NOT present it to the user yet.** First, run this review.
 
 Each review pass is a **separate sub-agent invocation** — not internal reasoning. This ensures genuine re-evaluation with fresh eyes on each pass.
+
+## Trivial-change exception
+
+If the design is a single-file change with an obvious shape (e.g., rename a function, add a missing field to a type, bump a version, remove a dead import, fix a typo in a string), skip shape review. Present the change directly with a one-line note: "trivial — shape review skipped." Save the review for designs where the shape could actually be wrong.
 
 ## Step 1: Prepare the content
 
@@ -99,7 +103,7 @@ The sub-agent's return value contains the review findings.
 
 ## Step 4: Dispatch subsequent passes
 
-For each subsequent pass (up to max 6 total), dispatch a **new** sub-agent with the same prompt structure as Step 2, modified as follows:
+For each subsequent pass (up to max 3 total), dispatch a **new** sub-agent with the same prompt structure as Step 2, modified as follows:
 
 - Change the pass number (Pass 2, Pass 3, etc.)
 - Inline the **revised** design text
@@ -108,7 +112,7 @@ For each subsequent pass (up to max 6 total), dispatch a **new** sub-agent with 
 After each pass:
 - **If PASS:** Proceed to Step 5
 - **If FAIL:** Revise again, dispatch next pass
-- **If 6 passes exhausted without PASS:** Present the design to the user with all findings attached and flag that the shape review did not converge — the user needs to weigh in
+- **If 3 passes exhausted without PASS:** Present the design to the user with all findings attached and flag that the shape review did not converge — the design probably has a deeper issue that needs the user's input, not more mechanical passes
 
 ## Step 5: Compile the summary
 
