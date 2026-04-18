@@ -21,7 +21,7 @@
       "id": 3,
       "name": "back-off-brainstorming",
       "mode": "none",
-      "prompt": "I'm trying to figure out whether we should position Yesper more as an AI infrastructure layer vs. an application-first product. Can you brainstorm with me? What are the pros and cons of each?",
+      "prompt": "I'm trying to figure out whether we should position our product more as an AI infrastructure layer vs. an application-first product. Can you brainstorm with me? What are the pros and cons of each?",
       "expected_behavior": "The skill SHOULD NOT trigger, or if it triggers, it should immediately recognize this as brainstorming / early exploration and back off per the 'When NOT to use' section. Neckbeard demanding primitives here would kill divergent thinking. If the skill engages, it should say something like 'this is brainstorming, not a prompt or plan to review — I'll sit this one out.' If it asks 2-3 sharp technical questions or tries to rewrite the prompt into directive form, flag as failure.",
       "files": []
     }
